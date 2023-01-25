@@ -1,12 +1,22 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { AppService } from './app.service';
+interface BodyData {
+  name: string;
+  data: Array<string>;
 
+}
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
 
-  @Get('/')
-  async getHello(): Promise<string> {
-    return this.appService.getHello();
+  @Get('/createList/')
+  async create(@Query('name') name: string): Promise<string> {
+    return this.appService.createList(name);
   }
+
+  @Post('/addToList/')
+  async add(@Body() body: BodyData): Promise<string> {
+    return this.appService.addToList(body['name'], body['data']);
+  }
+
 }

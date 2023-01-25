@@ -36,9 +36,12 @@ export class DbService {
   }
 
   async update(key: string, data: Array<string>) {
+    console.log(key);
     const reqWList = this.WatchLists.find((obj: any) => {
+      console.log(obj.name)
       obj.name === key;
     });
+    console.log(reqWList);
     const updatedTokens = reqWList.tokens.concat(data);
     const res = reqWList.update({ tokens: updatedTokens }).save();
     return res;

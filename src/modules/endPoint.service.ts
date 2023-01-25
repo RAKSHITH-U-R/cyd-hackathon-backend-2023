@@ -16,4 +16,16 @@ export class EndService {
         console.log(response.data["data"])
         return response.data;
     }
+
+
+    async integrate(): Promise<string> {
+        const url = "https://api.coingecko.com/api/v3/coins/list"
+        const response: any = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                "Accept-Encoding": "gzip,deflate,compress"
+            }
+        });
+        return response.data;
+    }
 }
