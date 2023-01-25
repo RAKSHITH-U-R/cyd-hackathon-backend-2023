@@ -19,9 +19,17 @@ export class DbService {
     });
   }
 
-  async find(key: string) {
+  async find(id: string) {
+    const reqWList = this.WatchLists.find((obj: any) => {
+      obj.id === id;
+      return obj.tokens;
+    });
+    return reqWList;
+  }
+  async findbyID(key: string) {
     const reqWList = this.WatchLists.find((obj: any) => {
       obj.name === key;
+      return obj;
     });
     return reqWList;
   }
@@ -40,6 +48,7 @@ export class DbService {
     const reqWList = this.WatchLists.find((obj: any) => {
       console.log(obj.name)
       obj.name === key;
+      return obj.tokens;
     });
     console.log(reqWList);
     const updatedTokens = reqWList.tokens.concat(data);

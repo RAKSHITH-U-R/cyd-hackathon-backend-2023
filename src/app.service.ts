@@ -17,4 +17,10 @@ export class AppService {
     console.log(data);
     return this.db.update(name, data);
   }
+
+  async getList(id: string): Promise<string> {
+    return this.db.findbyID(id);
+
+  }
+
 }
